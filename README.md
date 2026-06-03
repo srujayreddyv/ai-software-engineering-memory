@@ -8,7 +8,7 @@ The project is intentionally minimal. It provides reusable memory artifacts and 
 
 ## Repository Memory Standard
 
-AI Software Engineering Memory is a repository memory standard for AI coding agents. The goal is to create a small, consistent set of memory artifacts that preserve repository knowledge across tasks.
+AI Software Engineering Memory is a lightweight repository memory standard for AI coding agents. The goal is to create a small, consistent set of memory artifacts that preserve repository knowledge across tasks.
 
 It is designed to be repository-centric rather than agent-centric. The memory lives with the code so different agents and contributors can use the same durable context.
 
@@ -111,15 +111,72 @@ The repository is helping when users see:
 
 ## Example Task Usage
 
-Use the memory files as task context, not as a replacement for reading code.
+Use prompts like these when working with an AI coding agent:
 
-* **Feature request:** Before adding invoice CSV export, read memory, create a short plan, preserve the billing boundary, follow API and testing patterns, then update memory only if a durable pattern or decision changes.
-* **Bug fix:** Before fixing duplicate payment webhook processing, use `CODEBASE.md` to find the handler, `ARCHITECTURE.md` to understand payment flow, `PATTERNS.md` for idempotency and testing conventions, and add a regression test.
-* **Code review:** Before reviewing an account settings pull request, check architectural boundaries, existing patterns, test coverage, unrelated refactoring, security risks, and maintainability risks.
-* **Refactor:** Before refactoring invoice status calculation, preserve behavior and boundaries, follow naming and testing conventions, and verify behavior before and after the change.
-* **Database work:** Before adding an invoice export timestamp column, check data ownership, lifecycle constraints, migration conventions, fixture impact, rollout risk, and rollback risk.
-* **Testing work:** Before adding invoice export permission coverage, find the relevant test suites and commands, follow fixture and mocking conventions, and add the smallest test that proves the behavior.
-* **Dependency upgrade:** Before upgrading a payment SDK, find integration points, follow dependency management rules, preserve past technology tradeoffs, and verify security, compatibility, and rollback risk.
+```text
+Read AGENTS.md and the memory files first.
+
+Task: Add support for exporting invoices as CSV.
+
+Create a short task plan before editing. Preserve the billing module boundary,
+follow existing API and testing patterns, and update memory only if durable
+repository knowledge changes.
+```
+
+```text
+Read AGENTS.md and the memory files first.
+
+Task: Fix duplicate payment webhook processing.
+
+Use the memory files to understand the payment flow, idempotency conventions,
+and testing pattern. Add a regression test, make the smallest fix, and review
+correctness and risk before finalizing.
+```
+
+```text
+Read AGENTS.md and the memory files first.
+
+Task: Review this pull request.
+
+Lead with bugs, regressions, security issues, missing tests, architectural
+violations, and maintainability risks. Keep the summary brief.
+```
+
+```text
+Read AGENTS.md and the memory files first.
+
+Task: Refactor invoice status calculation without changing behavior.
+
+Preserve architectural boundaries, follow existing naming and testing patterns,
+and verify behavior before and after the refactor.
+```
+
+```text
+Read AGENTS.md and the memory files first.
+
+Task: Add an invoice export requested timestamp to the database.
+
+Check data ownership, lifecycle constraints, migration conventions, fixture
+impact, rollout risk, and rollback risk before editing.
+```
+
+```text
+Read AGENTS.md and the memory files first.
+
+Task: Add regression coverage for invoice export permissions.
+
+Find the relevant test suites and commands. Follow fixture, mocking, naming,
+and assertion conventions. Add the smallest test that proves the behavior.
+```
+
+```text
+Read AGENTS.md and the memory files first.
+
+Task: Upgrade the payment provider SDK.
+
+Find integration points, follow dependency management rules, preserve relevant
+technology tradeoffs, and verify security, compatibility, and rollback risk.
+```
 
 ## Example Memory Snapshot
 

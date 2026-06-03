@@ -148,6 +148,19 @@ Use PATTERNS.md for migration, transaction, fixture, and test conventions.
 Document rollout or rollback risk in the task plan before editing.
 ```
 
+For testing work:
+
+```text
+Read AGENTS.md and the memory files first.
+
+Task: Add regression coverage for invoice export permissions.
+
+Use CODEBASE.md to find the relevant test suites and commands. Use PATTERNS.md
+to follow fixture, mocking, naming, and assertion conventions. Add the smallest
+test that proves the behavior and run the focused test command before final
+review.
+```
+
 For a dependency upgrade:
 
 ```text

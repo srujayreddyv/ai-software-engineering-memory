@@ -111,6 +111,55 @@ conventions, and DECISIONS.md to preserve relevant tradeoffs. Add or update a
 regression test, then review correctness and risk before finalizing.
 ```
 
+For a code review:
+
+```text
+Read AGENTS.md and the memory files first.
+
+Task: Review the pull request for the account settings change.
+
+Check whether the change preserves architectural boundaries, follows existing
+patterns, updates the right tests, and avoids unrelated refactoring. Lead with
+bugs, regressions, security issues, missing tests, and maintainability risks.
+```
+
+For a refactor:
+
+```text
+Read AGENTS.md and the memory files first.
+
+Task: Refactor invoice status calculation for readability without changing
+behavior.
+
+Use CODEBASE.md to locate the relevant module, ARCHITECTURE.md to preserve
+boundaries, and PATTERNS.md to keep naming, testing, and error handling
+consistent. Verify behavior before and after the refactor.
+```
+
+For database or migration work:
+
+```text
+Read AGENTS.md and the memory files first.
+
+Task: Add a column that tracks when an invoice export was requested.
+
+Use ARCHITECTURE.md to understand data ownership and lifecycle constraints.
+Use PATTERNS.md for migration, transaction, fixture, and test conventions.
+Document rollout or rollback risk in the task plan before editing.
+```
+
+For a dependency upgrade:
+
+```text
+Read AGENTS.md and the memory files first.
+
+Task: Upgrade the payment provider SDK.
+
+Use CODEBASE.md to find integration points, PATTERNS.md to follow dependency
+management rules, and DECISIONS.md to preserve past technology tradeoffs.
+Verify affected tests and review security, compatibility, and rollback risk.
+```
+
 ## Example Memory Snapshot
 
 **Repository Overview:** A billing service that manages subscriptions, invoices, and payment provider callbacks.

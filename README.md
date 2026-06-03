@@ -66,11 +66,11 @@ ai-software-engineering-memory/
 
 ## Quick Start
 
-1. Copy `AGENTS.md` into a repository.
-2. Create `memory/CODEBASE.md`, `memory/ARCHITECTURE.md`, `memory/PATTERNS.md`, and `memory/DECISIONS.md`.
-3. Create a task plan before implementation.
+1. Copy `AGENTS.md`, `memory/`, and `templates/` into a repository.
+2. Fill the memory files with durable repository knowledge.
+3. Create a task plan before implementation when the task requires judgment.
 4. Review work after implementation.
-5. Update memory when repository knowledge changes.
+5. Update memory only when repository knowledge changes.
 
 ## How to Use This in a Repository
 
@@ -113,93 +113,13 @@ The repository is helping when users see:
 
 Use the memory files as task context, not as a replacement for reading code.
 
-For a feature request:
-
-```text
-Read AGENTS.md and the memory files first.
-
-Task: Add support for exporting invoices as CSV.
-
-Create a short task plan before editing. Pay attention to existing API,
-database, testing, and logging patterns. Preserve the billing module boundary.
-After implementation, review the work and update memory only if this introduces
-a durable new pattern or architectural decision.
-```
-
-For a bug fix:
-
-```text
-Read AGENTS.md and the memory files first.
-
-Task: Fix duplicate payment webhook processing.
-
-Use CODEBASE.md to find the webhook handler, ARCHITECTURE.md to understand the
-payment flow, PATTERNS.md to follow the existing idempotency and testing
-conventions, and DECISIONS.md to preserve relevant tradeoffs. Add or update a
-regression test, then review correctness and risk before finalizing.
-```
-
-For a code review:
-
-```text
-Read AGENTS.md and the memory files first.
-
-Task: Review the pull request for the account settings change.
-
-Check whether the change preserves architectural boundaries, follows existing
-patterns, updates the right tests, and avoids unrelated refactoring. Lead with
-bugs, regressions, security issues, missing tests, and maintainability risks.
-```
-
-For a refactor:
-
-```text
-Read AGENTS.md and the memory files first.
-
-Task: Refactor invoice status calculation for readability without changing
-behavior.
-
-Use CODEBASE.md to locate the relevant module, ARCHITECTURE.md to preserve
-boundaries, and PATTERNS.md to keep naming, testing, and error handling
-consistent. Verify behavior before and after the refactor.
-```
-
-For database or migration work:
-
-```text
-Read AGENTS.md and the memory files first.
-
-Task: Add a column that tracks when an invoice export was requested.
-
-Use ARCHITECTURE.md to understand data ownership and lifecycle constraints.
-Use PATTERNS.md for migration, transaction, fixture, and test conventions.
-Document rollout or rollback risk in the task plan before editing.
-```
-
-For testing work:
-
-```text
-Read AGENTS.md and the memory files first.
-
-Task: Add regression coverage for invoice export permissions.
-
-Use CODEBASE.md to find the relevant test suites and commands. Use PATTERNS.md
-to follow fixture, mocking, naming, and assertion conventions. Add the smallest
-test that proves the behavior and run the focused test command before final
-review.
-```
-
-For a dependency upgrade:
-
-```text
-Read AGENTS.md and the memory files first.
-
-Task: Upgrade the payment provider SDK.
-
-Use CODEBASE.md to find integration points, PATTERNS.md to follow dependency
-management rules, and DECISIONS.md to preserve past technology tradeoffs.
-Verify affected tests and review security, compatibility, and rollback risk.
-```
+* **Feature request:** Before adding invoice CSV export, read memory, create a short plan, preserve the billing boundary, follow API and testing patterns, then update memory only if a durable pattern or decision changes.
+* **Bug fix:** Before fixing duplicate payment webhook processing, use `CODEBASE.md` to find the handler, `ARCHITECTURE.md` to understand payment flow, `PATTERNS.md` for idempotency and testing conventions, and add a regression test.
+* **Code review:** Before reviewing an account settings pull request, check architectural boundaries, existing patterns, test coverage, unrelated refactoring, security risks, and maintainability risks.
+* **Refactor:** Before refactoring invoice status calculation, preserve behavior and boundaries, follow naming and testing conventions, and verify behavior before and after the change.
+* **Database work:** Before adding an invoice export timestamp column, check data ownership, lifecycle constraints, migration conventions, fixture impact, rollout risk, and rollback risk.
+* **Testing work:** Before adding invoice export permission coverage, find the relevant test suites and commands, follow fixture and mocking conventions, and add the smallest test that proves the behavior.
+* **Dependency upgrade:** Before upgrading a payment SDK, find integration points, follow dependency management rules, preserve past technology tradeoffs, and verify security, compatibility, and rollback risk.
 
 ## Example Memory Snapshot
 

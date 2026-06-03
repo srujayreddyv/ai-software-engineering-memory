@@ -4,7 +4,13 @@
 
 AI Software Engineering Memory is a lightweight repository knowledge layer for AI coding agents. It preserves context that cannot be reliably inferred from source code alone, such as architectural boundaries, engineering decisions, repository conventions, and long-term constraints.
 
-The project is intentionally minimal. It provides reusable memory artifacts and templates, not an agent framework, workflow engine, CLI, automation system, review bot, IDE plugin, MCP server, or RAG system.
+The project is intentionally minimal. It provides reusable memory artifacts and templates that can be copied into software repositories.
+
+## Repository Memory Standard
+
+AI Software Engineering Memory is a repository memory standard for AI coding agents. The goal is to create a small, consistent set of memory artifacts that preserve repository knowledge across tasks.
+
+It is designed to be repository-centric rather than agent-centric. The memory lives with the code so different agents and contributors can use the same durable context.
 
 ## Problem Statement
 
@@ -16,13 +22,25 @@ Without this memory, agents often rediscover the same context repeatedly, make p
 
 ## Core Concepts
 
-**Memory over process:** Store stable repository knowledge, not detailed workflows.
+**Memory over process:** Store stable repository knowledge, not detailed workflows. If an AI agent can easily infer information from source code, it should not be stored in memory.
 
 **Small context wins:** Keep every file short enough to read before a task.
 
 **Single responsibility:** Agent behavior, repository memory, planning templates, and review templates each live in their own files.
 
 **Decision preservation:** Record significant architectural decisions and tradeoffs without turning the log into release notes.
+
+## What This Is Not
+
+This project is not:
+
+* An agent framework
+* A workflow engine
+* A RAG system
+* An MCP server
+* A coding assistant
+
+This project is a repository memory layer.
 
 ## Repository Structure
 
@@ -70,7 +88,7 @@ Update the memory files only when durable knowledge changes. Good updates includ
 
 Before implementation, read the memory files and create a short task plan. During implementation, follow existing architecture and patterns, make minimal changes, and avoid unrelated refactoring. After implementation, review correctness, security, performance, maintainability, compatibility, and test coverage.
 
-Update memory only when durable repository knowledge changes. Do not use memory files for task history, release notes, or notes that can be reconstructed from source code.
+Update memory only when durable repository knowledge changes. Do not use memory files for task history, release notes, or notes that are clear from source code.
 
 The intended loop is:
 
@@ -80,6 +98,16 @@ The intended loop is:
 4. Verify the result.
 5. Review the work.
 6. Update memory only if lasting repository knowledge changed.
+
+## Success Criteria
+
+The repository is helping when users see:
+
+* Less repeated repository discovery
+* More consistent implementations
+* Fewer architectural violations
+* Better implementation plans
+* Faster onboarding for AI coding agents
 
 ## Example Task Usage
 

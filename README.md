@@ -12,6 +12,8 @@ AI coding agents can already read code, search repositories, implement changes, 
 
 Source code shows what exists now, but it rarely explains why boundaries were chosen, which tradeoffs matter, or which patterns should remain consistent. This repository captures that knowledge in short files that can be read before each task.
 
+Without this memory, agents often rediscover the same context repeatedly, make plausible but inconsistent architectural choices, or miss constraints that were obvious to the team but not encoded in the code. A small memory layer helps future work start from the repository's actual history and conventions.
+
 ## Core Concepts
 
 **Memory over process:** Store stable repository knowledge, not detailed workflows.
@@ -52,11 +54,62 @@ ai-software-engineering-memory/
 4. Review work after implementation.
 5. Update memory when repository knowledge changes.
 
+## How to Use This in a Repository
+
+Add these files to any software project where AI coding agents help with implementation, review, planning, or maintenance. The files should be committed with the code so every future task starts with the same repository knowledge.
+
+Before asking an agent to make a change, tell it to read `AGENTS.md` and the files in `memory/`. The agent should use that context to understand the codebase, preserve architectural boundaries, follow established patterns, and create a short plan before editing.
+
+Use `templates/TASK_PLAN_TEMPLATE.md` for tasks that require judgment, multiple files, behavior changes, migrations, or meaningful risk. For trivial edits, the template can be used lightly, but the agent should still state assumptions and verification steps.
+
+Use `templates/REVIEW_TEMPLATE.md` after implementation to check correctness, security, performance, maintainability, backward compatibility, and test coverage. The review should focus on risks and missed requirements, not process compliance.
+
+Update the memory files only when durable knowledge changes. Good updates include new architectural boundaries, important constraints, adopted implementation patterns, major dependency choices, or decisions that future contributors should not have to rediscover. Do not add ordinary task notes, commit summaries, or information that is obvious from reading the source code.
+
 ## Workflow
 
 Before implementation, read the memory files and create a short task plan. During implementation, follow existing architecture and patterns, make minimal changes, and avoid unrelated refactoring. After implementation, review correctness, security, performance, maintainability, compatibility, and test coverage.
 
 Update memory only when durable repository knowledge changes. Do not use memory files for task history, release notes, or notes that can be reconstructed from source code.
+
+The intended loop is:
+
+1. Read memory.
+2. Plan the task.
+3. Implement the smallest suitable change.
+4. Verify the result.
+5. Review the work.
+6. Update memory only if lasting repository knowledge changed.
+
+## Example Task Usage
+
+Use the memory files as task context, not as a replacement for reading code.
+
+For a feature request:
+
+```text
+Read AGENTS.md and the memory files first.
+
+Task: Add support for exporting invoices as CSV.
+
+Create a short task plan before editing. Pay attention to existing API,
+database, testing, and logging patterns. Preserve the billing module boundary.
+After implementation, review the work and update memory only if this introduces
+a durable new pattern or architectural decision.
+```
+
+For a bug fix:
+
+```text
+Read AGENTS.md and the memory files first.
+
+Task: Fix duplicate payment webhook processing.
+
+Use CODEBASE.md to find the webhook handler, ARCHITECTURE.md to understand the
+payment flow, PATTERNS.md to follow the existing idempotency and testing
+conventions, and DECISIONS.md to preserve relevant tradeoffs. Add or update a
+regression test, then review correctness and risk before finalizing.
+```
 
 ## Example Memory Snapshot
 
